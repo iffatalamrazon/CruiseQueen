@@ -59,27 +59,27 @@
             </div>
             <div class="input-group f-class">
                 <div>
-                    <label for="" id="phone-total">First Class ($150)</label>
-                    <input id="phone-count" value="0" class="inp-style inp-width" type="text" name="">
+                    <label for="" id="firstClassTicket-total">First Class ($150)</label>
+                    <input id="firstClassTicket-count" value="0" class="inp-style inp-width" type="text" name="">
                 </div>
                 <div class="plus-minus-btn ">
-                    <button  onclick="handleProductChange('phone',false)"  class="btn btn-default"><i class="fas fa-minus" "></i></button>    
+                    <button  onclick="handleTicketChange('firstClassTicket',false)"  class="btn btn-default"><i class="fas fa-minus" "></i></button>    
                     
-                    <button  onclick="handleProductChange('phone',true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>  
+                    <button  onclick="handleTicketChange('firstClassTicket',true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>  
                     <!-- <p>+ -</p> -->
                 </div>
             </div>
             
             <div class="input-group f-class">
                 <div>
-                    <label id="case-total"  for="">Economic($100)</label>
-                    <input id="case-count" value="0" class="inp-style inp-width" type="text" name="">
+                    <label id="economicTicket-total"  for="">Economic($100)</label>
+                    <input id="economicTicket-count" value="0" class="inp-style inp-width" type="text" name="">
                 </div>
                 <div class="plus-minus-btn">
                     
-                    <button  onclick="handleProductChange('case',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>    
+                    <button  onclick="handleTicketChange('economicTicket',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>    
                     
-                    <button  onclick="handleProductChange('case',true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>  
+                    <button  onclick="handleTicketChange('economicTicket',true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>  
              
                 </div>
             </div>
@@ -141,30 +141,31 @@
         
 
     })
-     function handleProductChange(product , isIncrease){
-            const caseInput =document.getElementById (product+'-count');
-            const caseCount = parseFloat (caseInput.value);
+
+    function handleTicketChange(ticket , isIncrease){
+            const ticketInput =document.getElementById (ticket+'-count');
+            const ticketCount = parseFloat (ticketInput.value);
            
-            let caseNewInput =caseCount ;
+            let ticketNewInput =ticketCount ;
             if (isIncrease== true){
-               caseNewInput = caseCount + 1 ;
+               ticketNewInput = ticketCount + 1 ;
             }
-            if (isIncrease == false && caseCount>0)
+            if (isIncrease == false && ticketCount>0)
             {
-               caseNewInput = caseCount -1 ;
+               ticketNewInput = ticketCount -1 ;
             }
-             caseInput.value = caseNewInput;
+             ticketInput.value = ticketNewInput;
 
              //phone case decrease section
              
-            let caseTotal = 0 ;
-            if (product == 'phone'){
-               caseTotal = caseNewInput * 150;
+            let ticketTotal = 0 ;
+            if (ticket == 'firstClassTicket'){
+               ticketTotal = ticketNewInput * 150;
             }
-            if (product == 'case'){
-               caseTotal = caseNewInput * 100;
+            if (ticket == 'economicTicket'){
+               ticketTotal = ticketNewInput * 100;
             }
-            document.getElementById(product + '-total').innerText = '$'+ caseTotal;
+            document.getElementById(ticket + '-total').innerText = ticket +" "+'$'+ ticketTotal;
             calculateTotal();
 
 
@@ -173,11 +174,11 @@
 
          }
          function calculateTotal(){
-            const phoneInput = document.getElementById('phone-count');
-            const phoneCount =parseInt (phoneInput.value);
-            const caseInput = document.getElementById ('case-count');
-            const caseCount = parseInt (caseInput.value);
-            const subTotal = phoneCount * 150 + caseCount * 100 ;
+            const firstClassTicketInput = document.getElementById('firstClassTicket-count');
+            const firstClassTicketCount =parseInt (firstClassTicketInput.value);
+            const economicTicketInput = document.getElementById ('economicTicket-count');
+            const economicTicketCount = parseInt (economicTicketInput.value);
+            const subTotal = firstClassTicketCount * 150 + economicTicketCount * 100 ;
             document.getElementById('sub-total').innerText = '$'+subTotal ;
             const tax = subTotal * 0.1 ;
             document.getElementById ('tax-amount').innerText = '$'+ tax ;
@@ -185,5 +186,6 @@
             document.getElementById ('total').innerText = '$'+total ;
          }
 </script>
+
 
 </html>
